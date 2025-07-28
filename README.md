@@ -55,23 +55,29 @@ The app uses a **modular, state-driven architecture** inspired by React — buil
 
 ```
 📦 project-root/
-├── index.html             # HTML shell
-└── src/
-    ├── main.ts            # App entry point
-    ├── app.state.ts       # Global reactive state
-    ├── app.logic.ts       # Business logic (e.g., slot filtering)
-    ├── app.storage.ts     # localStorage interaction
-    ├── style.css          # Global styles
-    ├── types.ts           # Global types
-    ├── components/
-    │   ├── App.ts         # Root layout (form + table + modal)
-    │   ├── Form.ts        # New + edit form with modal support
-    │   ├── Table.ts       # Appointment listing with Edit/Delete
-    │   ├── Counters.ts    # Total appointment card at top
-    └── utils/
-        └── id.ts          # Unique ID generator for appointments
-├── README.md              # You're here!
-└── tsconfig.json          # typescript configuration
+├── index.html                            # HTML shell
+├── src/
+│   ├── components/
+│   │   ├── AppointmentForm.tsx           # New + edit form with modal support
+│   │   ├── AppointmentsTable.tsx         # Appointment listing with Edit/Delete
+│   │   ├── EditAppointmentForm.tsx       # Edit appointment form
+│   │   └── TotalAppointmentsCard.tsx     # Total appointments card at top
+│   ├── context/
+│   │   ├── AppointmentContext.tsx        # React Context object for appointments
+│   │   └── AppointmentProvider.tsx       # Context provider managing state + CRUD logic
+│   ├── data/
+│   │   └── doctors.ts                    # List of doctors with names and IDs
+│   ├── hooks/
+│   │   └── useAppointments.ts            # Custom hook to access appointment context
+│   ├── utils/
+│   │   ├── id.ts                         # Unique ID generator for appointments
+│   │   └── localStorage.ts               # localStorage interaction
+│   ├── App.css                           # Global styles
+│   ├── App.tsx                           # Root layout (form + table + modal)
+│   ├── main.tsx                          # App entry point
+│   └── types.ts                          # Global types
+├── README.md                             # You're here!
+└── tsconfig.json                         # typescript configuration
 ```
 
 ## 🙋‍♀️ Author
