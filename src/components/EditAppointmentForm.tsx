@@ -3,11 +3,23 @@ import { useAppointments } from "../hooks/useAppointments";
 import { doctors } from "../data/doctors";
 import type { Appointment } from "../types";
 
+/**
+ * Props for the EditAppointmentForm component
+ */
 type Props = {
+  /** Appointment object to prefill the form */
   appointment: Appointment;
+  /** Function to close the modal after editing */
   onClose: () => void;
 };
 
+/**
+ * EditAppointmentForm component is rendered inside a modal to edit an existing appointment.
+ * It pre-fills all form fields based on the passed appointment and allows updating them.
+ *
+ * @param {Props} props - Contains the appointment to edit and the onClose function
+ * @returns JSX.Element
+ */
 export const EditAppointmentForm: React.FC<Props> = ({
   appointment,
   onClose,
@@ -21,6 +33,9 @@ export const EditAppointmentForm: React.FC<Props> = ({
   const [purpose, setPurpose] = useState("");
   const [availableSlots, setAvailableSlots] = useState<string[]>([]);
 
+  /**
+   * Prefill the form fields when a new appointment is passed in
+   */
   useEffect(() => {
     if (appointment) {
       setName(appointment.name);
@@ -31,11 +46,15 @@ export const EditAppointmentForm: React.FC<Props> = ({
     }
   }, [appointment]);
 
+  /**
+   * Load available slots when doctor or date changes.
+   * Also ensures that the original slot remains available when editing.
+   */
   useEffect(() => {
     if (doctorId && date) {
       const slots = getAvailableSlots(doctorId, date);
 
-      // Include current slot in list while editing
+      // Include current slot back in case it's already booked
       if (
         appointment?.slot &&
         appointment.doctorId === doctorId &&
@@ -51,6 +70,10 @@ export const EditAppointmentForm: React.FC<Props> = ({
     }
   }, [doctorId, date, appointment]);
 
+  /**
+   * Handles the update submission of the form
+   * @param e - Form event
+   */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!appointment) return;

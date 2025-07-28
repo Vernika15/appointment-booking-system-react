@@ -2,10 +2,24 @@ import React from "react";
 import { useAppointments } from "../hooks/useAppointments";
 import type { Appointment } from "../types";
 
+/**
+ * Props for the AppointmentsTable component
+ */
 type Props = {
+  /**
+   * Function to be called when an appointment is selected for editing.
+   * @param appointment - The appointment object to edit
+   */
   onEdit: (appointment: Appointment) => void;
 };
 
+/**
+ * AppointmentsTable component displays a list of booked appointments in a table format.
+ * It allows users to delete appointments or trigger the edit modal via the `onEdit` callback.
+ *
+ * @param {Props} props - Contains the onEdit handler for editing appointments
+ * @returns JSX.Element
+ */
 export const AppointmentsTable: React.FC<Props> = ({ onEdit }) => {
   const { appointments, deleteAppointment } = useAppointments();
 
@@ -37,10 +51,12 @@ export const AppointmentsTable: React.FC<Props> = ({ onEdit }) => {
                   <td>{appt.slot}</td>
                   <td>{appt.purpose}</td>
                   <td>
+                    {/* Edit Button: triggers the onEdit handler */}
                     <button className="edit-btn" onClick={() => onEdit(appt)}>
                       Edit
                     </button>
 
+                    {/* Delete Button: confirms deletion and removes the appointment */}
                     <button
                       className="delete-btn"
                       onClick={() => {

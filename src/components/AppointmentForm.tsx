@@ -3,6 +3,11 @@ import { useAppointments } from "../hooks/useAppointments";
 import { doctors } from "../data/doctors";
 import { generateId } from "../utils/id";
 
+/**
+ * AppointmentForm component allows users to book a new appointment
+ * or update an existing one. It provides dynamic doctor availability
+ * and form validation.
+ */
 export const AppointmentForm: React.FC = () => {
   const {
     addAppointment,
@@ -12,6 +17,7 @@ export const AppointmentForm: React.FC = () => {
     getAvailableSlots,
   } = useAppointments();
 
+  // Form state variables
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [doctorId, setDoctorId] = useState("");
@@ -19,11 +25,15 @@ export const AppointmentForm: React.FC = () => {
   const [purpose, setPurpose] = useState("");
   const [availableSlots, setAvailableSlots] = useState<string[]>([]);
 
+  /**
+   * useEffect to update available slots when doctor or date changes.
+   * Also includes selected slot if editing an appointment.
+   */
   useEffect(() => {
     if (doctorId && date) {
       const slots = getAvailableSlots(doctorId, date);
 
-      // When editing, include the old slot back in available list
+      // When editing, re-add the current slot to the list
       if (
         selectedAppointment?.slot &&
         selectedAppointment.doctorId === doctorId &&
@@ -39,6 +49,9 @@ export const AppointmentForm: React.FC = () => {
     }
   }, [doctorId, date, selectedAppointment]);
 
+  /**
+   * useEffect to populate form fields when an appointment is selected for editing.
+   */
   useEffect(() => {
     if (selectedAppointment) {
       setName(selectedAppointment.name);
@@ -49,6 +62,9 @@ export const AppointmentForm: React.FC = () => {
     }
   }, [selectedAppointment]);
 
+  /**
+   * Resets all form fields and clears selected appointment.
+   */
   const resetForm = () => {
     setName("");
     setDate("");
@@ -59,6 +75,11 @@ export const AppointmentForm: React.FC = () => {
     setSelectedAppointment(null);
   };
 
+  /**
+   * Handles form submission for both creating and updating an appointment.
+   *
+   * @param e - React form event
+   */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 

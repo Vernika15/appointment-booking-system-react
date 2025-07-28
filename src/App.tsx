@@ -7,17 +7,31 @@ import { useAppointments } from "./hooks/useAppointments";
 import { EditAppointmentForm } from "./components/EditAppointmentForm";
 import type { Appointment } from "./types";
 
+/**
+ * Root component of the Appointment Booking System.
+ * Handles layout, modal visibility, and appointment editing state.
+ *
+ * @returns {JSX.Element} The complete app UI with form, table, modal, and card.
+ */
 function App() {
   const { appointments } = useAppointments();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingAppointment, setEditingAppointment] =
     useState<Appointment | null>(null);
 
+  /**
+   * Triggers modal and sets the appointment to be edited.
+   *
+   * @param {Appointment} appt - The appointment to edit.
+   */
   const handleEdit = (appt: Appointment) => {
     setEditingAppointment(appt);
     setIsModalOpen(true);
   };
 
+  /**
+   * Closes the modal and resets editing state.
+   */
   const handleCloseModal = () => {
     setEditingAppointment(null);
     setIsModalOpen(false);
