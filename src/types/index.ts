@@ -13,3 +13,13 @@ export type Appointment = {
   slot: string;
   purpose: string;
 };
+
+export type AppointmentContextType = {
+  appointments: Appointment[];
+  selectedAppointment: Appointment | null;
+  addAppointment: (appointment: Appointment) => void;
+  updateAppointment: (appointment: Appointment) => void;
+  deleteAppointment: (id: string) => void;
+  setSelectedAppointment: (appointment: Appointment | null) => void;
+  getAvailableSlots: (doctorId: string, date: string) => string[];
+};

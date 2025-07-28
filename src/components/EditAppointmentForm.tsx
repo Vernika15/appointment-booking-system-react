@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAppointments } from "../context/AppointmentContext";
+import { useAppointments } from "../hooks/useAppointments";
 import { doctors } from "../data/doctors";
 import type { Appointment } from "../types";
 

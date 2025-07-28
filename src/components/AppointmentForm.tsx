@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAppointments } from "../context/AppointmentContext";
+import { useAppointments } from "../hooks/useAppointments";
 import { doctors } from "../data/doctors";
 import { generateId } from "../utils/id";
 
@@ -75,9 +75,12 @@ export const AppointmentForm: React.FC = () => {
       purpose,
     };
 
-    selectedAppointment
-      ? updateAppointment(appointment)
-      : addAppointment(appointment);
+    if (selectedAppointment) {
+      updateAppointment(appointment);
+    } else {
+      addAppointment(appointment);
+    }
+
     resetForm();
   };
 

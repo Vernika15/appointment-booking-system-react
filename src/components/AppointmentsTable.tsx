@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppointments } from "../context/AppointmentContext";
+import { useAppointments } from "../hooks/useAppointments";
 import type { Appointment } from "../types";
 
 type Props = {

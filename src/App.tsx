@@ -3,7 +3,7 @@ import "./App.css";
 import { AppointmentForm } from "./components/AppointmentForm";
 import { AppointmentsTable } from "./components/AppointmentsTable";
 import TotalAppointmentsCard from "./components/TotalAppointmentsCard";
-import { useAppointments } from "./context/AppointmentContext";
+import { useAppointments } from "./hooks/useAppointments";
 import { EditAppointmentForm } from "./components/EditAppointmentForm";
 import type { Appointment } from "./types";
 
