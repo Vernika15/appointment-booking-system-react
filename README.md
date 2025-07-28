@@ -1,69 +1,86 @@
-# React + TypeScript + Vite
+# 🗓️ Appointment Booking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a single-page **Appointment Booking System** built using **React, TypeScript, and Vite**. It allows users to select doctors, choose available time slots, book appointments, and manage them with full **CRUD (Create, Read, Update, Delete)** functionality — all backed by `localStorage`.
 
-Currently, two official plugins are available:
+Live Demo: [appointment-booking-system](https://appointment-booking-system-react-six.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🧍 Book appointments with patient name, doctor, date, time slot, and purpose
+- 📆 Slot availability updates dynamically based on selected doctor and date
+- 🗃 View all appointments in a clean tabular format
+- ✏️ Edit appointment via a modal with pre-filled data
+- 🗑️ Delete appointment with confirmation and automatic slot re-availability
+- 💾 All data is persisted in the browser using `localStorage`
+- 🔄 Live UI updates using global state-driven rendering
+- 🧭 Horizontal split layout: form on the left, appointment list on the right
+- 🎉 Alerts shown on successful deletion
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🛠️ Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+To run the project locally:
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/appointment-booking-system-react.git
+cd appointment-booking-system-react
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3. Run the development server
+
+```bash
+npm run dev
+```
+
+Then visit: [http://localhost:5173](http://localhost:5173)
+
+> Make sure you have **Node.js 18+** installed for Vite compatibility.
+
+---
+
+## 📁 Project Structure
+
+The app uses a **modular, state-driven architecture** inspired by React — built purely in TypeScript with Vite:
+
+```
+📦 project-root/
+├── index.html             # HTML shell
+└── src/
+    ├── main.ts            # App entry point
+    ├── app.state.ts       # Global reactive state
+    ├── app.logic.ts       # Business logic (e.g., slot filtering)
+    ├── app.storage.ts     # localStorage interaction
+    ├── style.css          # Global styles
+    ├── types.ts           # Global types
+    ├── components/
+    │   ├── App.ts         # Root layout (form + table + modal)
+    │   ├── Form.ts        # New + edit form with modal support
+    │   ├── Table.ts       # Appointment listing with Edit/Delete
+    │   ├── Counters.ts    # Total appointment card at top
+    └── utils/
+        └── id.ts          # Unique ID generator for appointments
+├── README.md              # You're here!
+└── tsconfig.json          # typescript configuration
+```
+
+## 🙋‍♀️ Author
+
+**Vernika Garg**  
+Front-end Developer | React Native Enthusiast
+
+---
+
+## 📃 License
+
+This project is part of an academic assignment and intended for educational purposes only.
